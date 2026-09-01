@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 224" fill="none" role="img" aria-label="Portrait placeholder — replace with Aditi">
+  <!-- Back hair (deep cocoa) -->
+  <path d="M28,150 C22,96 40,36 70,32 C100,36 118,96 112,150 C114,186 96,214 70,214 C44,214 26,186 28,150 Z" fill="#2E2119"/>
+
+  <!-- Shoulders / top -->
+  <path d="M12 224 C12 186 34 174 54 174 C58 166 60 158 62 158 L78 158 C80 158 82 166 86 174 C106 174 128 186 128 224 Z" fill="#4A3123"/>
+
+  <!-- Neck -->
+  <rect x="60" y="146" width="20" height="24" rx="9" fill="#E0BE94"/>
+
+  <!-- Face -->
+  <path d="M36 118 C36 74 56 48 70 48 C84 48 104 74 104 118 C104 146 90 162 70 162 C50 162 36 146 36 118 Z" fill="#F2DFC2"/>
+
+  <!-- Ear muffs -->
+  <ellipse cx="34" cy="122" rx="11" ry="26" fill="#6B4A30"/>
+  <ellipse cx="106" cy="122" rx="11" ry="26" fill="#6B4A30"/>
+  <ellipse cx="37" cy="122" rx="4.5" ry="17" fill="#8A6844"/>
+  <ellipse cx="103" cy="122" rx="4.5" ry="17" fill="#8A6844"/>
+
+  <!-- Headband over hair -->
+  <path d="M36 118 C30 78 58 46 70 46 C82 46 110 78 104 118" stroke="#6B4F32" stroke-width="13" stroke-linecap="round" fill="none"/>
+
+  <!-- Fringe -->
+  <path d="M44 64 C48 52 62 44 70 44 C84 44 98 52 102 64 C98 58 90 56 84 58 C90 64 92 72 88 78 C80 66 60 66 52 78 C48 72 50 64 52 60 Z" fill="#2E2118"/>
+
+  <!-- Eye + smile + blush (kept whisper-light) -->
+  <path d="M60 122 C64 116 70 114 74 118" stroke="#3E2A1B" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M78 124 C84 130 88 124 94 126" stroke="#3E2A1B" stroke-width="2.4" stroke-linecap="round" opacity=".85"/>
+  <path d="M60 154 C66 160 76 162 82 158" stroke="#3E2A1B" stroke-width="2.6" stroke-linecap="round" opacity=".8"/>
+
+  <!-- Earphone cable -->
+  <path d="M102 148 C108 168 92 182 96 198 C100 212 118 216 124 210" stroke="#5A3F28" stroke-width="3.4" stroke-linecap="round"/>
+</svg>
