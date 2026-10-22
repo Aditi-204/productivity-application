@@ -3,10 +3,12 @@ const User = require('../models/User');
 const Todo = require('../models/Todo');
 const Attendance = require('../models/Attendance');
 const { authenticate } = require('../middleware/auth.middleware');
+const { authorize } = require('../middleware/role.middleware');
 
 const router = express.Router();
 
 router.use(authenticate);
+router.use(authorize('admin'));
 
 const models = {
   users: User,
@@ -20,19 +22,21 @@ router.get('/data/:collection', async (req, res) => {
     const Model = models[collection];
 
     if (!Model) {
-      return res.status(400).json({ message: 'Invalid collection. Use: users, todos, attendance' });
+      return res.status(400).json({
+        message: 'Invalid collection. Use: users, todos, attendance',
+      });
     }
 
     let query = {};
-    if (req.user.role !== 'admin' && collection !== 'users') {
+
+    if (collection !== 'users') {
       query.user = req.user._id;
     }
 
     let documents;
-    if (collection === 'users' && req.user.role === 'admin') {
+
+    if (collection === 'users') {
       documents = await Model.find().select('-password').lean();
-    } else if (collection === 'users') {
-      documents = await Model.find({ _id: req.user._id }).select('-password').lean();
     } else {
       documents = await Model.find(query).populate('user', 'name email').lean();
     }
