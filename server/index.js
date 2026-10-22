@@ -12,6 +12,7 @@ const todoRoutes = require('./routes/todo.routes');
 const attendanceRoutes = require('./routes/attendance.routes');
 const reportRoutes = require('./routes/report.routes');
 const emailRoutes = require('./routes/email.routes');
+const adminRoutes = require('./routes/admin.routes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -29,6 +30,7 @@ app.use('/api/todos', todoRoutes);
 app.use('/api/attendance', attendanceRoutes);
 app.use('/api/reports', reportRoutes);
 app.use('/api/email', emailRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
