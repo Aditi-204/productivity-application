@@ -37,18 +37,17 @@ const ProtectedRoute = () => {
 const PublicRoute = () => {
   const { isAuthenticated } = useAuthStore();
   if (isAuthenticated) return <Navigate to="/dashboard" replace />;
-  return (
-    <>
-      <Outlet />
-    </>
-  );
+  return <Outlet />;
 };
 
 const App = () => {
   const { initTheme } = useThemeStore();
+  const { isAuthenticated } = useAuthStore();
   const location = useLocation();
 
-  useEffect(() => { initTheme(); }, []);
+  useEffect(() => {
+    initTheme();
+  }, [initTheme]);
 
   return (
     <>
@@ -78,13 +77,14 @@ const App = () => {
           transition={{ type: 'spring', stiffness: 220, damping: 25, mass: 0.8 }}
         >
           <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Navigate to={isAuthenticated ? '/dashboard' : '/login'} replace />} />
             <Route element={<PublicRoute />}>
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/auth/callback" element={<OAuthCallback />} />
             </Route>
             <Route path="/dashboard" element={<ProtectedRoute />} />
-            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            <Route path="*" element={<Navigate to={isAuthenticated ? '/dashboard' : '/login'} replace />} />
           </Routes>
         </motion.div>
       </AnimatePresence>
