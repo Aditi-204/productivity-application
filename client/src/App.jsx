@@ -12,24 +12,26 @@ import OAuthCallback from './components/Auth/OAuthCallback';
 import ScrollHome from './components/Dashboard/ScrollHome';
 
 const pageTrans = {
-  initial: { opacity: 0, y: 30, filter: 'blur(10px)' },
-  animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
-  exit: { opacity: 0, filter: 'blur(6px)' },
+  initial: { opacity: 0, y: 14 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -10 }
 };
 
 const ProtectedRoute = () => {
   const { isAuthenticated } = useAuthStore();
+
   if (!isAuthenticated) return <Navigate to="/login" replace />;
+
   return (
-    <div className="bg-[#0B0F17] min-h-screen overflow-x-hidden">
-      <div className="fixed inset-0 mesh-gradient pointer-events-none" />
-      <div className="blob blob-1" />
-      <div className="blob blob-2" />
-      <div className="blob blob-3" />
-      <div className="fixed inset-0 noise-bg pointer-events-none" />
-      <TopBar />
-      <NavArrows />
-      <ScrollHome />
+    <div className="relative min-h-screen overflow-x-hidden bg-[#0b1020] text-slate-100">
+      <div className="mesh-bg fixed inset-0 pointer-events-none" />
+      <div className="noise-bg fixed inset-0 pointer-events-none" />
+      <div className="relative z-10">
+        <TopBar />
+        <main className="pt-24">
+          <ScrollHome />
+        </main>
+      </div>
     </div>
   );
 };
@@ -57,16 +59,16 @@ const App = () => {
           duration: 4000,
           style: {
             borderRadius: '16px',
-            background: 'rgba(20, 28, 41, 0.95)',
-            backdropFilter: 'blur(20px)',
-            color: '#fff',
-            fontSize: '14px',
-            border: '1px solid rgba(255,255,255,0.06)',
+            background: 'rgba(15, 23, 42, 0.96)',
+            border: '1px solid rgba(148, 163, 184, 0.15)',
+            color: '#f8fafc',
+            boxShadow: '0 14px 30px rgba(2, 6, 23, 0.35)',
           },
-          success: { iconTheme: { primary: '#A7F3D0', secondary: '#0B0F17' } },
-          error: { iconTheme: { primary: '#F9A8D4', secondary: '#0B0F17' } },
+          success: { iconTheme: { primary: '#7EE7D2', secondary: '#0b1020' } },
+          error: { iconTheme: { primary: '#FB7185', secondary: '#0b1020' } }
         }}
       />
+
       <AnimatePresence mode="wait">
         <motion.div
           key={location.pathname}
@@ -74,7 +76,8 @@ const App = () => {
           initial="initial"
           animate="animate"
           exit="exit"
-          transition={{ type: 'spring', stiffness: 220, damping: 25, mass: 0.8 }}
+          transition={{ duration: 0.28, ease: 'easeOut' }}
+          className="min-h-screen"
         >
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Navigate to={isAuthenticated ? '/dashboard' : '/login'} replace />} />
